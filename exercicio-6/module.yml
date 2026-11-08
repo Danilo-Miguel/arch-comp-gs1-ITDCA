@@ -1,0 +1,4 @@
+name: "Exercício 6"
+challenges:
+  - id: inteiro-estouro
+    name: "Estouro de inteiro"

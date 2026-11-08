@@ -1,0 +1,4 @@
+name: "Exercício 1"
+challenges:
+  - id: log-firewall
+    name: "Log do firewall em hexadecimal"

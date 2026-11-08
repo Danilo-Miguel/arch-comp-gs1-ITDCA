@@ -1,0 +1,4 @@
+name: "Exercício 8"
+challenges:
+  - id: banner64
+    name: "Banner do servidor (64 bits)"

@@ -1,0 +1,4 @@
+name: "Exercício 2"
+challenges:
+  - id: gdb-registradores
+    name: "GDB: lendo registradores"

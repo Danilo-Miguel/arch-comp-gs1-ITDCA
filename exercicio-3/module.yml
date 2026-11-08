@@ -1,0 +1,4 @@
+name: "Exercício 3"
+challenges:
+  - id: gdb-rastreio
+    name: "GDB: rastreando um registrador"

@@ -1,0 +1,4 @@
+name: "Exercício 5"
+challenges:
+  - id: format-string
+    name: "String de formato"
