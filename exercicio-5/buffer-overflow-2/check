@@ -1,5 +1,5 @@
 #!/usr/bin/exec-suid -- /bin/bash -p
-# Exercicio 4: Transbordo de pilha
+# Exercicio 5: Buffer overflow 2
 #
 # Regra de tentativas: o aluno pode errar UMA vez. No segundo erro o exercício
 # fica INVALIDADO e este check nunca mais libera a flag. Arquivo ausente,
@@ -16,7 +16,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/run/dojo/bin
 export LC_ALL=C
 trap '' INT QUIT TSTP HUP
 
-DESAFIO="overflow-pilha"
+DESAFIO="buffer-overflow-2"
 ALUNO="hacker"
 HOME_ALUNO="/home/hacker"
 ESTADO_DIR="$HOME_ALUNO/.tentativas"
@@ -144,19 +144,12 @@ reprovar() {
 abrir_registro
 
 RESP="$HOME_ALUNO/resposta.txt"
-# ------------------------------------------------------------------------
-# GABARITO PRIVADO: este repositorio e publico e NAO traz as respostas.
-# Gere o hash esperado com o gerador que fica FORA do repositorio. Ele e o
-#   printf '%s\n' "ID_DO_DESAFIO" "linha1" "linha2" ... | sha256sum
-# (o id do desafio seguido de cada linha da resposta, cada um com \n).
-# Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
-# ------------------------------------------------------------------------
-ESPERADO_SHA256="d545678432f5717843b2a6d61f5a6eb338ec779893d85d188bff2875f9ea5dcd"
+ESPERADO_SHA256="d658e38b1754bee8204b7fffa13c3d84bd9bcc215eb296b1619b88930edb6480"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
-    "offset em bytes do inicio de buf ate o endereco de retorno salvo, em decimal|^[0-9]+$"
-    "o mesmo offset em hexadecimal, 0x e digitos MAIUSCULOS|^0x[0-9A-F]+$"
-    "o endereco alvo escrito em little-endian: 8 bytes hex MAIUSCULOS separados por espaco|^[0-9A-F]{2}( [0-9A-F]{2}){7}$"
+    "tamanho do buffer buf em bytes, em decimal|^[0-9]+$"
+    "enchimento em bytes ate o endereco de retorno, em decimal|^[0-9]+$"
+    "valor de RIP no ret apos 136 bytes 0x41 e 8 bytes 0x43, em hex 0x MAIUSCULO|^0x[0-9A-F]+$"
 )
 
 mostrar_formato() {
@@ -173,7 +166,6 @@ if ! como_aluno test -f "$RESP"; then
     exit 1
 fi
 
-# Ignora apenas \r e espacos no fim de cada linha; linha em branco conta como linha.
 LINHAS=()
 mapfile -t LINHAS < <(como_aluno head -c 4096 -- "$RESP" | sed 's/[ \r]*$//')
 

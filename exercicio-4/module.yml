@@ -1,4 +1,4 @@
 name: "Exercício 4"
 challenges:
-  - id: overflow-pilha
-    name: "Transbordo de pilha"
+  - id: buffer-overflow-1
+    name: "Buffer overflow 1"

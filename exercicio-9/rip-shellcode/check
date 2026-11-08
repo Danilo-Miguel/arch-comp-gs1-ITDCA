@@ -1,5 +1,5 @@
 #!/usr/bin/exec-suid -- /bin/bash -p
-# Exercicio 6: Estouro de inteiro
+# Exercicio 9: Controlar o RIP (desviar para o shellcode)
 #
 # Regra de tentativas: o aluno pode errar UMA vez. No segundo erro o exercício
 # fica INVALIDADO e este check nunca mais libera a flag. Arquivo ausente,
@@ -16,7 +16,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/run/dojo/bin
 export LC_ALL=C
 trap '' INT QUIT TSTP HUP
 
-DESAFIO="inteiro-estouro"
+DESAFIO="rip-shellcode"
 ALUNO="hacker"
 HOME_ALUNO="/home/hacker"
 ESTADO_DIR="$HOME_ALUNO/.tentativas"
@@ -144,19 +144,12 @@ reprovar() {
 abrir_registro
 
 RESP="$HOME_ALUNO/resposta.txt"
-# ------------------------------------------------------------------------
-# GABARITO PRIVADO: este repositorio e publico e NAO traz as respostas.
-# Gere o hash esperado com o gerador que fica FORA do repositorio. Ele e o
-#   printf '%s\n' "ID_DO_DESAFIO" "linha1" "linha2" ... | sha256sum
-# (o id do desafio seguido de cada linha da resposta, cada um com \n).
-# Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
-# ------------------------------------------------------------------------
-ESPERADO_SHA256="e5674129bfcff05cec0014853b35fa14d553215a5c46ea26182ac6f20443e9e2"
+ESPERADO_SHA256="55a08ea2a1143534d00adb8feda7e3b2bb1a56bb1fee1aced8f44a7d40700420"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
-    "o valor de tam (int com sinal) que passa pela checagem mas causa copia grande, em decimal|^-?[0-9]+$"
-    "o mesmo valor reinterpretado como unsigned de 32 bits, em decimal|^[0-9]+$"
-    "o contador uint8_t depois do wrap, em decimal (0 a 255)|^[0-9]{1,3}$"
+    "enchimento em bytes ate o endereco de retorno, em decimal|^[0-9]+$"
+    "endereco colocado no retorno para cair no shellcode, em hex 0x MAIUSCULO|^0x[0-9A-F]+$"
+    "esse endereco em little-endian: 8 bytes hex MAIUSCULOS separados por espaco|^[0-9A-F]{2}( [0-9A-F]{2}){7}$"
 )
 
 mostrar_formato() {
@@ -173,7 +166,6 @@ if ! como_aluno test -f "$RESP"; then
     exit 1
 fi
 
-# Ignora apenas \r e espacos no fim de cada linha; linha em branco conta como linha.
 LINHAS=()
 mapfile -t LINHAS < <(como_aluno head -c 4096 -- "$RESP" | sed 's/[ \r]*$//')
 

@@ -1,5 +1,5 @@
 #!/usr/bin/exec-suid -- /bin/bash -p
-# Exercicio 10: Syscall e injecao de codigo
+# Exercicio 10: Corrupcao de variavel adjacente
 #
 # Regra de tentativas: o aluno pode errar UMA vez. No segundo erro o exercício
 # fica INVALIDADO e este check nunca mais libera a flag. Arquivo ausente,
@@ -16,7 +16,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/run/dojo/bin
 export LC_ALL=C
 trap '' INT QUIT TSTP HUP
 
-DESAFIO="syscall-shellcode"
+DESAFIO="variavel-adjacente"
 ALUNO="hacker"
 HOME_ALUNO="/home/hacker"
 ESTADO_DIR="$HOME_ALUNO/.tentativas"
@@ -144,20 +144,12 @@ reprovar() {
 abrir_registro
 
 RESP="$HOME_ALUNO/resposta.txt"
-# ------------------------------------------------------------------------
-# GABARITO PRIVADO: este repositorio e publico e NAO traz as respostas.
-# Gere o hash esperado com o gerador que fica FORA do repositorio. Ele e o
-#   printf '%s\n' "ID_DO_DESAFIO" "linha1" "linha2" ... | sha256sum
-# (o id do desafio seguido de cada linha da resposta, cada um com \n).
-# Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
-# ------------------------------------------------------------------------
-ESPERADO_SHA256="35c66eb96cc3557beacd3926e299d43d478ed273c6ae928ae48e2262084ca950"
+ESPERADO_SHA256="b70789efae1b0c9089a8009ecffa5e24cc1b75d2b473fb1910ec0277cadcbc62"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
-    "o numero da syscall execve no Linux x86-64, em decimal|^[0-9]+$"
-    "esse numero em hexadecimal, 0x e digitos MAIUSCULOS|^0x[0-9A-F]+$"
-    "o registrador que leva o NUMERO da syscall no x86-64, em MAIUSCULAS (ex.: RAX)|^R[A-Z0-9]+$"
-    "o registrador do 1o argumento (path) de execve na ABI System V x86-64, em MAIUSCULAS|^R[A-Z0-9]+$"
+    "offset em bytes de buf ate a variavel chave, em decimal|^[0-9]+$"
+    "valor que a variavel chave precisa ter, em hex 0x MAIUSCULO|^0x[0-9A-F]+$"
+    "os 4 bytes gravados em chave em little-endian: 4 bytes hex MAIUSCULOS separados por espaco|^[0-9A-F]{2}( [0-9A-F]{2}){3}$"
 )
 
 mostrar_formato() {
@@ -174,7 +166,6 @@ if ! como_aluno test -f "$RESP"; then
     exit 1
 fi
 
-# Ignora apenas \r e espacos no fim de cada linha; linha em branco conta como linha.
 LINHAS=()
 mapfile -t LINHAS < <(como_aluno head -c 4096 -- "$RESP" | sed 's/[ \r]*$//')
 

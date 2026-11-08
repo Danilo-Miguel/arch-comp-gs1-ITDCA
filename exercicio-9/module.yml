@@ -1,4 +1,4 @@
 name: "Exercício 9"
 challenges:
-  - id: off-by-one
-    name: "Erro de um byte"
+  - id: rip-shellcode
+    name: "Controlar o RIP (desviar para o shellcode)"

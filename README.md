@@ -14,20 +14,23 @@ exercício.
 | `exercicio-1` | `log-firewall` | IPs em hexadecimal e máscara de rede | cópia idêntica (ref. exercício 1) |
 | `exercicio-2` | `gdb-registradores` | GDB: ler registradores | novo (nível do dojo *example*) |
 | `exercicio-3` | `gdb-rastreio` | GDB: rastrear o `RAX` numa chamada | novo (GDB, mais difícil) |
-| `exercicio-4` | `overflow-pilha` | Transbordo de pilha: offset e endianness | novo |
-| `exercicio-5` | `format-string` | String de formato: ABI e pilha | novo |
-| `exercicio-6` | `inteiro-estouro` | Estouro de inteiro: sinal e largura | novo |
+| `exercicio-4` | `buffer-overflow-1` | Buffer overflow 1: transbordar até o `RIP` | novo (estilo shellcode) |
+| `exercicio-5` | `buffer-overflow-2` | Buffer overflow 2: buffer maior, mesmo alvo | novo (estilo shellcode) |
+| `exercicio-6` | `controlar-rip` | Sobrescrever o retorno e controlar o `RIP` | novo (estilo shellcode) |
 | `exercicio-7` | `cadastro32` | Duas leituras e escrita (Assembly 32 bits) | cópia idêntica (ref. exercício 7) |
 | `exercicio-8` | `banner64` | Escrita (Assembly 64 bits) | cópia idêntica (ref. exercício 8) |
-| `exercicio-9` | `off-by-one` | Erro de um byte: NUL e little-endian | novo |
-| `exercicio-10` | `syscall-shellcode` | Interface de syscalls x86-64 | novo |
+| `exercicio-9` | `rip-shellcode` | Controlar o `RIP` e desviar para o shellcode | novo (estilo shellcode) |
+| `exercicio-10` | `variavel-adjacente` | Corrupção de variável adjacente | novo (estilo shellcode) |
 
 Os módulos 1, 7 e 8 foram **copiados byte a byte** do dojo de referência
-(binário/hexadecimal e Assembly x86). Os módulos 2 e 3 cobrem o uso do **GDB**,
-no espírito do módulo de registradores do dojo *example*, o 3 sobe o nível,
-pedindo o acompanhamento de um registrador específico ao longo da execução. Os
-cinco restantes variam o **tipo de vulnerabilidade** e ficam no nível de
-dificuldade do material de *shellcode*, cada um proposto como desafio.
+(binário/hexadecimal e Assembly x86). Os módulos 2 e 3 cobrem o uso do **GDB**:
+ler registradores e, no 3, acompanhar um registrador ao longo da execução. Os
+módulos 4, 5, 6, 9 e 10 são de **corrupção de memória**, no nível e no estilo do
+material de *shellcode*, cada um de um tipo: buffer overflow (1 e 2),
+sobrescrever o retorno e controlar o `RIP`, desviar o `RIP` para o shellcode
+injetado e corromper uma variável adjacente. Em cada um o aluno **injeta ou
+transborda e demonstra no GDB o que mudou** (por exemplo, o `RIP` sobrescrito);
+o enunciado dá só um guia curto, a demonstração é do aluno.
 
 ## Regra das tentativas
 
@@ -39,37 +42,19 @@ flag. O registro fica em `/home/hacker/.tentativas`, um arquivo por exercício,
 o registro. Não contam como tentativa: arquivo ausente, número de linhas errado
 ou linha fora do formato. Os checks guardam só o SHA-256 das respostas.
 
-## Gabarito e geração dos hashes (IMPORTANTE antes de publicar)
+## Gabarito
 
-Este repositório é **público** e, por isso, **não traz o gabarito**. Os checks
-dos módulos novos (2, 3, 4, 5, 6, 9, 10) já têm toda a lógica e a validação de
-formato, mas o hash esperado está como **marcador**:
+Os checks já vêm com o **hash da resposta embutido** (como no dojo de
+referência; o hash é de mão única e não revela a resposta). O gabarito legível,
+com o passo a passo e as respostas de cada exercício, está em
+[GABARITO.md](./GABARITO.md), que é **local e não deve ir para um repositório
+público**.
 
-```
-ESPERADO_SHA256="PREENCHER_COM_O_GERADOR_PRIVADO"
-```
-
-Para cada um desses módulos, calcule as respostas corretas a partir do
-enunciado (o código de cada desafio é determinístico) e gere o hash **fora deste
-repositório**, com:
-
-```sh
-printf '%s\n' "<id-do-desafio>" "<linha1>" "<linha2>" ... | sha256sum
-```
-
-usando o `id` do desafio (ex.: `gdb-rastreio`) seguido de cada linha da
-resposta, na ordem do enunciado. Cole os 64 caracteres hex em
-`ESPERADO_SHA256`. Os módulos 1, 7 e 8 já vêm com o hash pronto, pois são cópias
-idênticas.
-
-Os desafios de GDB (2 e 3) assumem que os binários `/challenge/registradores` e
-`/challenge/rastreio` existam, compilados exatamente a partir das listagens NASM
-dos enunciados. Os desafios 4 a 6, 9 e 10 são de **análise**: o aluno responde a
-partir das listagens e de raciocínio sobre memória/ABI, sem precisar de um alvo
-de verdade.
+Os módulos 2, 3, 4, 5, 6, 9 e 10 assumem que os binários `/challenge/<nome>`
+existam na imagem do dojo (compilados a partir das listagens dos enunciados)
+para o aluno usar o GDB. O `check` em si compara apenas o `~/resposta.txt`.
 
 ## Ambiente
 
 A imagem `pwncollege/challenge-simple` é mínima. As ferramentas (`gdb`, NASM,
-`objdump` etc.) vêm do workspace do pwn.college, em `/run/dojo/bin`. O gabarito,
-as soluções e o gerador dos checks **não** ficam neste repositório.
+`objdump` etc.) vêm do workspace do pwn.college, em `/run/dojo/bin`.
