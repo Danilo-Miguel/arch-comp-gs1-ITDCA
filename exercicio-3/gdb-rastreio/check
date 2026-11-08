@@ -151,7 +151,7 @@ RESP="$HOME_ALUNO/resposta.txt"
 # (o id do desafio seguido de cada linha da resposta, cada um com \n).
 # Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
 # ------------------------------------------------------------------------
-ESPERADO_SHA256="PREENCHER_COM_O_GERADOR_PRIVADO"
+ESPERADO_SHA256="ed4c93599ff395a419c254a786d9ad83f21e8931a1c5f79f00727973b81c4d37"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
     "RAX imediatamente ANTES da instrucao de chamada, em hex 0x MAIUSCULO|^0x[0-9A-F]+$"

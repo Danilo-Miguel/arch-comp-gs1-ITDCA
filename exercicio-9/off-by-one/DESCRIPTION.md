@@ -30,7 +30,7 @@ A entrada do usuário é a string `"A"` repetida, terminada pelo byte NUL que o
 O laço escreve um byte a mais do que `buf` comporta. Esse byte extra cai sobre
 o **byte menos significativo** do `RBP` salvo. Pense em quantos bytes o laço
 realmente escreve, qual byte vaza para fora de `buf` e como ele altera o `RBP`
-salvo — lembrando que x86-64 é **little-endian**. **Não escreva exploit
+salvo, lembrando que x86-64 é **little-endian**. **Não escreva exploit
 nenhum**: mostre que entende o layout e a ordem dos bytes. Responda:
 
 1. quantos bytes, no total, o laço escreve;

@@ -1,4 +1,4 @@
-<h2 align="center">Exercício 2: GDB — lendo registradores</h2>
+<h2 align="center">Exercício 2: GDB, lendo registradores</h2>
 
 > **Atenção: você só pode errar UMA vez.** No segundo erro o exercício fica
 > **invalidado** e a flag não é mais liberada. Arquivo faltando ou fora do

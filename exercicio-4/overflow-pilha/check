@@ -151,7 +151,7 @@ RESP="$HOME_ALUNO/resposta.txt"
 # (o id do desafio seguido de cada linha da resposta, cada um com \n).
 # Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
 # ------------------------------------------------------------------------
-ESPERADO_SHA256="PREENCHER_COM_O_GERADOR_PRIVADO"
+ESPERADO_SHA256="d545678432f5717843b2a6d61f5a6eb338ec779893d85d188bff2875f9ea5dcd"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
     "offset em bytes do inicio de buf ate o endereco de retorno salvo, em decimal|^[0-9]+$"

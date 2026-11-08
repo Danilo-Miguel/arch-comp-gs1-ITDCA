@@ -11,14 +11,14 @@ região de memória marcada como **executável** e, em seguida, desvia a execuç
 para o início dela:
 
 ```c
-void *buf = mmap(..., PROT_READ | PROT_WRITE | PROT_EXEC, ...);
+void *buf = mmap(..., PROT_READ | PROT_WRITE | PROT_EXEC...);
 read(0, buf, 4096);
 ((void(*)())buf)();      // executa os bytes recebidos
 ```
 
 Para entender o que um código injetado precisaria fazer para pedir ao núcleo a
 execução de outro programa, você precisa conhecer a **interface de chamadas de
-sistema** do x86-64 — não escrever código de ataque.
+sistema** do x86-64, não escrever código de ataque.
 
 ## Sua missão
 

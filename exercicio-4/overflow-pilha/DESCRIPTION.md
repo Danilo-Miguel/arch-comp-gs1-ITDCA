@@ -32,7 +32,7 @@ Existe também, no mesmo binário, uma função nunca chamada pelo fluxo normal:
 
 Entenda o *layout* do quadro de pilha dessa função e o que seria preciso para
 desviar a execução para `win`. **Você não precisa escrever nenhum exploit nem
-derrubar nada** — precisa demonstrar que entende a memória. Responda:
+derrubar nada**, precisa demonstrar que entende a memória. Responda:
 
 1. o deslocamento, em bytes, do início de `buf` até o **endereço de retorno
    salvo** na pilha;

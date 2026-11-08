@@ -39,7 +39,7 @@ pilha. Com base nisso, responda:
    **registradores** antes de a passagem começar a usar a pilha;
 2. a posição `N` do **primeiro** `%N$p` que lê um valor **da pilha** (e não de
    um registrador);
-3. o valor que esse `%N$p` imprimiria — ou seja, o conteúdo que está na posição
+3. o valor que esse `%N$p` imprimiria, ou seja, o conteúdo que está na posição
    `N`, conforme o quadro acima.
 
 Mapear os especificadores para registradores e depois para a pilha é o

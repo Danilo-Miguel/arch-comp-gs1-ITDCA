@@ -30,7 +30,7 @@ contador += 10;                 // o que acontece aqui?
 
 A checagem `tam <= 64` é feita com sinal, mas `memcpy` interpreta `tam` como
 `size_t` sem sinal. Pense em qual valor atravessa a checagem e, mesmo assim,
-vira uma cópia gigantesca — e no que acontece com o contador de 1 byte quando
+vira uma cópia gigantesca, e no que acontece com o contador de 1 byte quando
 ele passa de 255. **Não é preciso explorar nada**; é preciso mostrar que você
 entende complemento de dois e a largura dos tipos. Responda:
 

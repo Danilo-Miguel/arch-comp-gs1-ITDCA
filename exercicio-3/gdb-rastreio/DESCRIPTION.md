@@ -1,4 +1,4 @@
-<h2 align="center">Exercício 3: GDB — rastreando um registrador</h2>
+<h2 align="center">Exercício 3: GDB, rastreando um registrador</h2>
 
 > **Atenção: você só pode errar UMA vez.** No segundo erro o exercício fica
 > **invalidado** e a flag não é mais liberada. Arquivo faltando ou fora do
@@ -39,8 +39,8 @@ no código como `(A)`, `(B)` e `(C)`:
   **antes** do `add`;
 - **(C)** logo **depois** da próxima instrução que altera `RAX` (o `add`).
 
-Descobrir onde parar em cada ponto — e como avançar a execução instrução por
-instrução sem pular a chamada — faz parte do exercício. O mesmo registrador,
+Descobrir onde parar em cada ponto, e como avançar a execução instrução por
+instrução sem pular a chamada, faz parte do exercício. O mesmo registrador,
 três valores: mostre que você entendeu por que cada um é o que é.
 
 ## Formato da resposta

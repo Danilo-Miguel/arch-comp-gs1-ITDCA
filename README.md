@@ -1,4 +1,4 @@
-# GS Computer Actuated
+# GS Computer Architecture
 
 Dojo do pwn.college para a **GS (Global Solution) de Arquitetura de
 Computadores**, definido em [dojo.yml](./dojo.yml), com 10 exercícios. Cada
@@ -24,7 +24,7 @@ exercício.
 
 Os módulos 1, 7 e 8 foram **copiados byte a byte** do dojo de referência
 (binário/hexadecimal e Assembly x86). Os módulos 2 e 3 cobrem o uso do **GDB**,
-no espírito do módulo de registradores do dojo *example* — o 3 sobe o nível,
+no espírito do módulo de registradores do dojo *example*, o 3 sobe o nível,
 pedindo o acompanhamento de um registrador específico ao longo da execução. Os
 cinco restantes variam o **tipo de vulnerabilidade** e ficam no nível de
 dificuldade do material de *shellcode*, cada um proposto como desafio.

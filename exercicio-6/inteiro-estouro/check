@@ -151,7 +151,7 @@ RESP="$HOME_ALUNO/resposta.txt"
 # (o id do desafio seguido de cada linha da resposta, cada um com \n).
 # Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
 # ------------------------------------------------------------------------
-ESPERADO_SHA256="PREENCHER_COM_O_GERADOR_PRIVADO"
+ESPERADO_SHA256="e5674129bfcff05cec0014853b35fa14d553215a5c46ea26182ac6f20443e9e2"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
     "o valor de tam (int com sinal) que passa pela checagem mas causa copia grande, em decimal|^-?[0-9]+$"

@@ -151,7 +151,7 @@ RESP="$HOME_ALUNO/resposta.txt"
 # (o id do desafio seguido de cada linha da resposta, cada um com \n).
 # Cole os 64 hex em ESPERADO_SHA256 antes de publicar o dojo.
 # ------------------------------------------------------------------------
-ESPERADO_SHA256="PREENCHER_COM_O_GERADOR_PRIVADO"
+ESPERADO_SHA256="c6c8d4fe4d8346b35a5d3b577d5a43a56e919548739033cee3919e17f5bbd3e4"
 # Uma linha por item: "descricao|regex do formato".
 ITENS=(
     "quantos argumentos variadicos vem em registradores na ABI System V x86-64, em decimal|^[0-9]+$"
